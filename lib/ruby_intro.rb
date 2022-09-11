@@ -64,6 +64,15 @@ end
 
 def binary_multiple_of_4?(string)
   # YOUR CODE HERE
+  if not(string.is_a? Integer) and !(string =~ /\A[-+]?[0-9]+\z/)
+    return false
+  end
+  string = string.to_i
+  if string%4 == 0
+    return true
+  else
+   return false
+  end
 end
 
 # Part 3
@@ -71,4 +80,17 @@ end
 # Object representing a book
 class BookInStock
   # YOUR CODE HERE
+  attr_accessor :isbn
+  attr_accessor :price	
+	def initialize(isbn,price)
+    @isbn = isbn
+		@price = price
+		if @price <= 0 or @isbn.empty? 
+			raise ArgumentError
+		end
+	end
+	def price_as_string
+		return "$#{'%.2f' %  @price}"
+	end
+
 end
